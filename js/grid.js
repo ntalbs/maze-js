@@ -10,6 +10,14 @@ function Grid(rows, cols) {
   }
 }
 
+Grid.prototype.eachRow = function () {
+  var rows = [];
+  for (var r = 0, rlen = this.grid.length; r < rlen; r++) {
+    rows.push(this.grid[r]);
+  }
+  return rows;
+};
+
 Grid.prototype.eachCell = function () {
   var cells = [];
   for (var r = 0, rlen = this.grid.length; r < rlen; r++) {

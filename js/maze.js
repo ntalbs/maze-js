@@ -24,9 +24,31 @@ function binaryTree (rows, cols) {
   return grid;
 }
 
+function sidewinder (rows, cols) {
+  var grid = new Grid(rows, cols);
+  grid.eachRow().forEach(function (row) {
+    var run = [];
+    row.forEach(function (cell) {
+      run.push(cell);
+      var isAtEasternBoundary = !grid.eastOf(cell),
+          isAtNorthernBoundary = !grid.northOf(cell),
+          shouldCloseOut = isAtEasternBoundary || (!isAtNorthernBoundary && rand(2) == 0);
+      if (shouldCloseOut) {
+        var member = run[rand(run.length)];
+        if (grid.northOf(member)) member.link(grid.northOf(member));
+        run = [];
+      } else {
+        cell.link(grid.eastOf(cell));
+      }
+    });
+  });
+  return grid;
+}
+
 function maze(algorithm) {
   switch(algorithm) {
   case 'binaryTree': return binaryTree;
+  case 'sidewinder': return sidewinder;
   default:
     throw new 'not supported algorithm';
   }
