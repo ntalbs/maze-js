@@ -79,4 +79,34 @@ Grid.prototype.toString = function () {
   return output;
 };
 
+Grid.prototype.draw = function (canvasId, cellSize) {
+  var self = this,
+      canvas = document.getElementById(canvasId),
+      g = canvas.getContext("2d"),
+      drawLine = function (x1, y1, x2, y2, color) {
+        g.strokeStyle = !!color ? color : 'black';
+        g.beginPath();
+        g.moveTo(x1, y1);
+        g.lineTo(x2, y2);
+        g.lineWidth = 1;
+        g.stroke();
+      };
+
+  canvas.width = cellSize * this.grid[0].length + 1;
+  canvas.height = cellSize * this.grid.length + 1;
+
+  g.translate(0.5, 0.5);
+
+  this.eachCell().forEach(function (cell) {
+    var x1 = cell.col * cellSize,
+        y1 = cell.row * cellSize,
+        x2 = (cell.col + 1) * cellSize,
+        y2 = (cell.row + 1) * cellSize;
+    if (!self.northOf(cell)) drawLine(x1, y1, x2, y1);
+    if (!self.westOf(cell)) drawLine(x1, y1, x1, y2);
+    if (!cell.isLinked(self.eastOf(cell))) drawLine(x2, y1, x2, y2);
+    if (!cell.isLinked(self.southOf(cell))) drawLine(x1, y2, x2, y2);
+  });
+};
+
 module.exports = Grid;
