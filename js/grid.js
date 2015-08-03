@@ -84,7 +84,7 @@ Grid.prototype.draw = function (canvasId, cellSize) {
       canvas = document.getElementById(canvasId),
       g = canvas.getContext("2d"),
       drawLine = function (x1, y1, x2, y2, color) {
-        g.strokeStyle = !!color ? color : 'black';
+        g.strokeStyle = color || 'black';
         g.beginPath();
         g.moveTo(x1, y1);
         g.lineTo(x2, y2);
