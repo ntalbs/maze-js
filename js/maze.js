@@ -54,10 +54,10 @@ function maze(algorithm) {
   }
 }
 
-var mz = maze('binaryTree')(10,10);
-
-console.log(mz.toString());
 
 window.onload = function (e) {
-  mz.draw('canvas1', 30);
+  var mz,
+      rows = 10, cols = 10;
+  mz = maze('binaryTree')(rows, cols).draw({canvasId: 'canvas-binary-tree', cellSize: 20});
+  mz = maze('sidewinder')(rows, cols).draw({canvasId: 'canvas-sidewinder', cellSize: 20});
 };

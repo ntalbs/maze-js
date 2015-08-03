@@ -87,7 +87,12 @@ Grid.prototype.toString = function () {
   return output;
 };
 
-Grid.prototype.draw = function (canvasId, cellSize) {
+Grid.prototype.draw = function (param) {
+  if (!param.canvasId)
+    throw new 'requires canvasId';
+  var canvasId = param.canvasId,
+      cellSize = param.cellSize || 10;
+
   var self = this,
       canvas = document.getElementById(canvasId),
       g = canvas.getContext("2d"),

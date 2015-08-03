@@ -4,9 +4,22 @@
     <script src="https://code.jquery.com/jquery-2.1.4.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.0/lodash.min.js" type="text/javascript"></script>
     <script src="dist/bundle.js"></script>
+    <style>
+      .maze-tile {
+        float: left;
+        padding: 5px 15px;
+      }
+    </style>
   </head>
   <body>
     <h1>Mazes</h1>
-    <canvas id="canvas1" width="500" height="350"></canvas>
+    <div class="maze-tile">
+      <h2>Binary Tree</h2>
+      <canvas id="canvas-binary-tree"></canvas>
+    </div>
+    <div class="maze-tile">
+      <h2>Sidewinder</h2>
+      <canvas id="canvas-sidewinder"></canvas>
+    </div>
   </body>
 </html>
