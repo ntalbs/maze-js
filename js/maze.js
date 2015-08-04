@@ -54,7 +54,6 @@ function maze(algorithm) {
   }
 }
 
-
 window.onload = function (e) {
   var mz,
       rows = 10, cols = 10;
