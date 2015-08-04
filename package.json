@@ -1,0 +1,21 @@
+{
+  "name": "maze-js",
+  "description": "maze generators",
+  "version": "0.0.1",
+  "keywords": [
+    "maze",
+    "generator",
+    "algorithm"
+  ],
+  "devDependencies": {
+    "browser-sync": "^2.8.2",
+    "browserify": "^11.0.1",
+    "gulp": "^3.9.0",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-util": "^3.0.6",
+    "lodash.assign": "^3.2.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.3.1"
+  }
+}
