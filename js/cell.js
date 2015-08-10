@@ -32,4 +32,8 @@ Cell.prototype.isLinked = function (cell) {
   return this.links.indexOf(cell) >= 0;
 };
 
+Cell.prototype.toString = function () {
+  return "c("+this.row+","+this.col+")";
+};
+
 module.exports = Cell;
