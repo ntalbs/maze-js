@@ -136,6 +136,8 @@ Grid.prototype.draw = function (param) {
   canvas.height = cellSize * this.grid.length + 1;
 
   g.translate(0.5, 0.5);
+  g.font = '12px "sans serif"';
+  g.textAlign = 'center';
 
   this.eachCell().forEach(function (cell) {
     var x1 = cell.col * cellSize,
@@ -146,6 +148,9 @@ Grid.prototype.draw = function (param) {
     if (!self.westOf(cell)) drawLine(x1, y1, x1, y2);
     if (!cell.isLinked(self.eastOf(cell))) drawLine(x2, y1, x2, y2);
     if (!cell.isLinked(self.southOf(cell))) drawLine(x1, y2, x2, y2);
+    if (param.contentOf) {
+      g.fillText(param.contentOf(cell), (x1+x2)/2, (y1+y2)/2);
+    }
   });
 };
 
