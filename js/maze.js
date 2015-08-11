@@ -57,6 +57,12 @@ function maze(algorithm) {
 window.onload = function (e) {
   var mz,
       rows = 10, cols = 10;
-  mz = maze('binaryTree')(rows, cols).draw({canvasId: 'canvas-binary-tree', cellSize: 20});
+  mz = maze('binaryTree')(rows, cols);
+  mz.draw({canvasId: 'canvas-binary-tree', cellSize: 20});
+  // console.log(mz.toString());
+  var distances = mz.distances();
+  console.log(mz.toString(function (cell) {
+    return distances.get(cell);
+  }));
   mz = maze('sidewinder')(rows, cols).draw({canvasId: 'canvas-sidewinder', cellSize: 20});
 };
