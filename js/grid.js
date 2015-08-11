@@ -1,4 +1,5 @@
-var Cell = require('./cell');
+var Cell = require('./cell'),
+    Distance = require('./distance');
 
 function Grid(rows, cols) {
   this.grid = [];
@@ -62,6 +63,24 @@ Grid.prototype.westOf = function (cell) {
 };
 
 Grid.prototype.toString = function () {
+Grid.prototype.distances = function (r, c) {
+  var root = this.grid[r||0][c||0],
+      distances = new Distance(root),
+      frontier = [root];
+  while (frontier.length !== 0) {
+    var newFrontier = [];
+    frontier.forEach(function (cell) {
+      cell.links.forEach(function (linked) {
+        if (typeof distances.get(linked) === 'number') return;
+        distances.set(linked, distances.get(cell)+1);
+        newFrontier.push(linked);
+      });
+    });
+    frontier = newFrontier;
+  }
+  return distances;
+};
+
   var output = '';
   var cols = this.grid[0].length;
 
