@@ -62,7 +62,6 @@ Grid.prototype.westOf = function (cell) {
   return this.grid[cell.getRow()][c];
 };
 
-Grid.prototype.toString = function () {
 Grid.prototype.distances = function (r, c) {
   var root = this.grid[r||0][c||0],
       distances = new Distance(root),
@@ -81,6 +80,15 @@ Grid.prototype.distances = function (r, c) {
   return distances;
 };
 
+Grid.prototype.toString = function (contentOf) {
+  function body(cell) {
+    if (!contentOf) return '   ';
+    var content = contentOf(cell);
+    if (typeof content !== 'number') return '   ';
+    else if (content <  10) return '  '+ content;
+    else if (content < 100) return ' ' + content;
+    return content;
+  }
   var output = '';
   var cols = this.grid[0].length;
 
@@ -91,13 +99,13 @@ Grid.prototype.distances = function (r, c) {
 
   for (var r = 0, rlen = this.grid.length; r < rlen; r++) {
     var row = this.grid[r];
-    var top = '|', bottom = '+', body = '   ';
+    var top = '|', bottom = '+';
     for (var c = 0, clen = row.length; c < clen; c++) {
       var cell = row[c];
       var eastBoundary = cell.isLinked(this.eastOf(cell)) ? ' ' : '|';
       var southBoundary = cell.isLinked(this.southOf(cell)) ? '   ' : '---';
       var corner = '+';
-      top += body + eastBoundary;
+      top += body(cell) + eastBoundary;
       bottom += southBoundary + corner;
     }
     output += top +'\n';
