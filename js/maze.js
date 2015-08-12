@@ -62,22 +62,18 @@ window.onload = function (e) {
   mz.draw({
     canvasId: 'canvas-binary-tree',
     cellSize: 20,
-    contentOf: function (cell) {
-      return distances.get(cell);
-    }
+    contentOf: function (cell) {return distances.get(cell);}
   });
 
-  console.log(mz.toString(function (cell) {
-    return distances.get(cell);
-  }));
+  // console.log(mz.toString(function (cell) {
+  //   return distances.get(cell);
+  // }));
 
   mz = maze('sidewinder')(rows, cols);
   distances = mz.distances();
   mz.draw({
     canvasId: 'canvas-sidewinder',
     cellSize: 20,
-    contentOf: function (cell) {
-      return distances.get(cell);
-    }
+    contentOf: function (cell) {return distances.get(cell);}
   });
 };
