@@ -62,6 +62,28 @@ Grid.prototype.westOf = function (cell) {
   return this.grid[cell.getRow()][c];
 };
 
+Grid.prototype.neighborsOf = function (cell) {
+  var neighbors = [],
+      north = this.northOf(cell),
+      east = this.eastOf(cell),
+      south = this.southOf(cell),
+      west = this.westOf(cell);
+  if (!!north) neighbors.push(north);
+  if (!!east) neighbors.push(east);
+  if (!!south) neighbors.push(south);
+  if (!!west) neighbors.push(west);
+  return neighbors;
+};
+
+Grid.prototype.randomCell = function () {
+  function rand(limit) {
+    return Math.floor(Math.random() * limit);
+  }
+  var r = rand(this.grid.length),
+      c = rand(this.grid[0].length);
+  return this.grid[r][c];
+};
+
 Grid.prototype.distances = function (r, c) {
   var root = this.grid[r||0][c||0],
       distances = new Distance(root),
