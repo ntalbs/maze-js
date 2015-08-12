@@ -143,14 +143,19 @@ Grid.prototype.draw = function (param) {
     var x1 = cell.col * cellSize,
         y1 = cell.row * cellSize,
         x2 = (cell.col + 1) * cellSize,
-        y2 = (cell.row + 1) * cellSize;
+        y2 = (cell.row + 1) * cellSize,
+        distance = param.contentOf && param.contentOf(cell);
+
+    if (distance >= 0) {
+      g.fillStyle = "rgba(128,0,255," + (distance*0.04) + ")";
+      g.fillRect(x1, y1, cellSize, cellSize);
+      g.fillStyle = 'black';
+      g.fillText(distance, (x1+x2)/2, (y1+y2)/2);
+    }
     if (!self.northOf(cell)) drawLine(x1, y1, x2, y1);
     if (!self.westOf(cell)) drawLine(x1, y1, x1, y2);
     if (!cell.isLinked(self.eastOf(cell))) drawLine(x2, y1, x2, y2);
     if (!cell.isLinked(self.southOf(cell))) drawLine(x1, y2, x2, y2);
-    if (param.contentOf) {
-      g.fillText(param.contentOf(cell), (x1+x2)/2, (y1+y2)/2);
-    }
   });
 };
 
