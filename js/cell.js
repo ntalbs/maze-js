@@ -24,10 +24,6 @@ Cell.prototype.unlink = function (cell, bidi) {
   if (typeof bidi === 'undefined' || !!bidi) cell.unlink(this, false);
 };
 
-Cell.prototype.links = function () {
-  return this.links;
-};
-
 Cell.prototype.isLinked = function (cell) {
   return this.links.indexOf(cell) >= 0;
 };
