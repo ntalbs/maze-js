@@ -5,6 +5,10 @@ function rand(limit) {
   return Math.floor(Math.random() * limit);
 }
 
+function sample(arr) {
+  return arr[rand(arr.length)];
+}
+
 function binaryTree (rows, cols) {
   var grid = new Grid(rows, cols);
   grid.eachCell().forEach(function (cell) {
@@ -45,10 +49,27 @@ function sidewinder (rows, cols) {
   return grid;
 }
 
+function aldousBroder (rows, cols) {
+  var grid = new Grid(rows, cols),
+      unvisited = rows * cols - 1,
+      current = grid.randomCell();
+
+  while (unvisited > 0) {
+    var neighbor = sample(grid.neighborsOf(current));
+    if (neighbor.links.length === 0) {
+      current.link(neighbor);
+      unvisited -= 1;
+    }
+    current = neighbor;
+  }
+  return grid;
+}
+
 function maze(algorithm) {
   switch(algorithm) {
   case 'binaryTree': return binaryTree;
   case 'sidewinder': return sidewinder;
+  case 'aldousBroder': return aldousBroder;
   default:
     throw new 'not supported algorithm';
   }
@@ -73,6 +94,14 @@ window.onload = function (e) {
   distances = mz.distances();
   mz.draw({
     canvasId: 'canvas-sidewinder',
+    cellSize: 20,
+    contentOf: function (cell) {return distances.get(cell);}
+  });
+
+  mz = maze('aldousBroder')(rows, cols);
+  distances = mz.distances();
+  mz.draw({
+    canvasId: 'canvas-aldous-broder',
     cellSize: 20,
     contentOf: function (cell) {return distances.get(cell);}
   });
