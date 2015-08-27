@@ -1,9 +1,6 @@
-var Cell = require('./cell');
-var Grid = require('./grid');
-
-function rand(limit) {
-  return Math.floor(Math.random() * limit);
-}
+var Cell = require('./cell'),
+    Grid = require('./grid'),
+    rand = require('./rand');
 
 function sample(arr) {
   return arr[rand(arr.length)];

@@ -1,5 +1,6 @@
 var Cell = require('./cell'),
-    Distance = require('./distance');
+    Distance = require('./distance'),
+    rand = require('./rand');
 
 function Grid(rows, cols) {
   this.grid = [];
@@ -76,9 +77,6 @@ Grid.prototype.neighborsOf = function (cell) {
 };
 
 Grid.prototype.randomCell = function () {
-  function rand(limit) {
-    return Math.floor(Math.random() * limit);
-  }
   var r = rand(this.grid.length),
       c = rand(this.grid[0].length);
   return this.grid[r][c];
