@@ -140,6 +140,8 @@ Grid.prototype.draw = function (param) {
 
   var self = this,
       canvas = param.canvas,
+      colorize = param.colorize,
+      labelDistance = param.labelDistance,
       cellSize = param.cellSize || 25,
       g = canvas.getContext("2d"),
       drawLine = function (x1, y1, x2, y2, color) {
@@ -158,18 +160,24 @@ Grid.prototype.draw = function (param) {
   g.font = '12px "sans serif"';
   g.textAlign = 'center';
 
+  if (colorize) {
+    var distances = this.distances();
+  }
+
   this.eachCell().forEach(function (cell) {
     var x1 = cell.col * cellSize,
         y1 = cell.row * cellSize,
         x2 = (cell.col + 1) * cellSize,
-        y2 = (cell.row + 1) * cellSize,
-        distance = param.contentOf && param.contentOf(cell);
+        y2 = (cell.row + 1) * cellSize;
 
-    if (distance >= 0) {
-      g.fillStyle = "rgba(128,0,255," + (distance*0.01) + ")";
+    if (colorize) {
+      var distance = distances.get(cell);
+      g.fillStyle = "rgba(64,0,128," + (distance*0.001) + ")";
       g.fillRect(x1, y1, cellSize, cellSize);
       g.fillStyle = 'black';
-      g.fillText(distance, (x1+x2)/2, (y1+y2)/2);
+    }
+    if (labelDistance) {
+      g.fillText(distance, (x1+x2)/2, (y1+y2)/2 + (y2-y1)/6);
     }
     if (!self.northOf(cell)) drawLine(x1, y1, x2, y1);
     if (!self.westOf(cell)) drawLine(x1, y1, x1, y2);

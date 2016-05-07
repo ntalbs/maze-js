@@ -95,10 +95,11 @@ window.onload = function (e) {
 
   algorithms.forEach(function (algorithm) {
     var name = algorithm.name,
-        mz = algorithm(rows, cols),
-        distances = mz.distances();
+        mz = algorithm(rows, cols);
     mz.draw({
-      contentOf: function (cell) {return distances.get(cell);},
+      colorize: true,
+      // labelDistance: true,
+      cellSize: 15,
       canvas: document.getElementById(name)
     });
   });
