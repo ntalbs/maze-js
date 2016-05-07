@@ -167,7 +167,7 @@ Grid.prototype.draw = function (param) {
         distance = param.contentOf && param.contentOf(cell);
 
     if (distance >= 0) {
-      g.fillStyle = "rgba(128,0,255," + (distance*0.04) + ")";
+      g.fillStyle = "rgba(128,0,255," + (distance*0.01) + ")";
       g.fillRect(x1, y1, cellSize, cellSize);
       g.fillStyle = 'black';
       g.fillText(distance, (x1+x2)/2, (y1+y2)/2);
