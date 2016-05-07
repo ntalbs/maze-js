@@ -62,6 +62,31 @@ function aldousBroder (rows, cols) {
   return grid;
 }
 
+function pick(arr) {
+  var r = rand(arr.length);
+  return arr[r];
+}
+
+function recursiveBacktracker (rows, cols) {
+  var grid = new Grid(rows, cols),
+      stack = [],
+      startAt = grid.randomCell();
+  stack.push(startAt);
+  while (stack.length !== 0) {
+    var current = stack[stack.length-1];
+    var neighbors = grid.neighborsOf(current).filter(function (c) {
+      return c.links.length === 0;
+    });
+    if (neighbors.length === 0) {
+      stack.pop();
+    } else {
+      var neighbor = pick(neighbors);
+      current.link(neighbor);
+      stack.push(neighbor);
+    }
+  }
+  return grid;
+}
 
 window.onload = function (e) {
   var mz,
@@ -90,6 +115,14 @@ window.onload = function (e) {
   distances = mz.distances();
   mz.draw({
     canvasId: 'canvas-aldous-broder',
+    cellSize: 20,
+    contentOf: function (cell) {return distances.get(cell);}
+  });
+
+  mz = recursiveBacktracker(rows, cols);
+  distances = mz.distances();
+  mz.draw({
+    canvasId: 'canvas-recursive-backtracker',
     cellSize: 20,
     contentOf: function (cell) {return distances.get(cell);}
   });
