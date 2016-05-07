@@ -90,40 +90,16 @@ function recursiveBacktracker (rows, cols) {
 
 window.onload = function (e) {
   var mz,
-      rows = 10, cols = 10;
-  mz = binaryTree(rows, cols);
-  var distances = mz.distances();
-  mz.draw({
-    canvasId: 'canvas-binary-tree',
-    cellSize: 20,
-    contentOf: function (cell) {return distances.get(cell);}
-  });
+      rows = 10, cols = 10,
+      algorithms = [binaryTree, sidewinder, aldousBroder, recursiveBacktracker];
 
-  // console.log(mz.toString(function (cell) {
-  //   return distances.get(cell);
-  // }));
-
-  mz = sidewinder(rows, cols);
-  distances = mz.distances();
-  mz.draw({
-    canvasId: 'canvas-sidewinder',
-    cellSize: 20,
-    contentOf: function (cell) {return distances.get(cell);}
-  });
-
-  mz = aldousBroder(rows, cols);
-  distances = mz.distances();
-  mz.draw({
-    canvasId: 'canvas-aldous-broder',
-    cellSize: 20,
-    contentOf: function (cell) {return distances.get(cell);}
-  });
-
-  mz = recursiveBacktracker(rows, cols);
-  distances = mz.distances();
-  mz.draw({
-    canvasId: 'canvas-recursive-backtracker',
-    cellSize: 20,
-    contentOf: function (cell) {return distances.get(cell);}
+  algorithms.forEach(function (algorithm) {
+    var name = algorithm.name,
+        mz = algorithm(rows, cols),
+        distances = mz.distances();
+    mz.draw({
+      contentOf: function (cell) {return distances.get(cell);},
+      canvas: document.getElementById(name)
+    });
   });
 };

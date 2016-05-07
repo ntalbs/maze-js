@@ -135,13 +135,12 @@ Grid.prototype.toString = function (contentOf) {
 };
 
 Grid.prototype.draw = function (param) {
-  if (!param.canvasId)
-    throw new 'requires canvasId';
-  var canvasId = param.canvasId,
-      cellSize = param.cellSize || 10;
+  if (!param.canvas || param.canvas.tagName !== 'CANVAS')
+    throw new 'requires canvas';
 
   var self = this,
-      canvas = document.getElementById(canvasId),
+      canvas = param.canvas,
+      cellSize = param.cellSize || 25,
       g = canvas.getContext("2d"),
       drawLine = function (x1, y1, x2, y2, color) {
         g.strokeStyle = color || 'black';
