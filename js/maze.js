@@ -90,7 +90,7 @@ function recursiveBacktracker (rows, cols) {
 
 window.onload = function (e) {
   var mz,
-      rows = 10, cols = 10,
+      rows = 20, cols = 20,
       algorithms = [binaryTree, sidewinder, aldousBroder, recursiveBacktracker];
 
   algorithms.forEach(function (algorithm) {

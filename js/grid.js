@@ -157,7 +157,7 @@ Grid.prototype.draw = function (param) {
   canvas.height = cellSize * this.grid.length + 1;
 
   g.translate(0.5, 0.5);
-  g.font = '12px "sans serif"';
+  g.font = (cellSize*0.5) + 'px "Arial"';
   g.textAlign = 'center';
 
   if (colorize) {
