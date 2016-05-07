@@ -62,20 +62,11 @@ function aldousBroder (rows, cols) {
   return grid;
 }
 
-function maze(algorithm) {
-  switch(algorithm) {
-  case 'binaryTree': return binaryTree;
-  case 'sidewinder': return sidewinder;
-  case 'aldousBroder': return aldousBroder;
-  default:
-    throw new 'not supported algorithm';
-  }
-}
 
 window.onload = function (e) {
   var mz,
       rows = 10, cols = 10;
-  mz = maze('binaryTree')(rows, cols);
+  mz = binaryTree(rows, cols);
   var distances = mz.distances();
   mz.draw({
     canvasId: 'canvas-binary-tree',
@@ -87,7 +78,7 @@ window.onload = function (e) {
   //   return distances.get(cell);
   // }));
 
-  mz = maze('sidewinder')(rows, cols);
+  mz = sidewinder(rows, cols);
   distances = mz.distances();
   mz.draw({
     canvasId: 'canvas-sidewinder',
@@ -95,7 +86,7 @@ window.onload = function (e) {
     contentOf: function (cell) {return distances.get(cell);}
   });
 
-  mz = maze('aldousBroder')(rows, cols);
+  mz = aldousBroder(rows, cols);
   distances = mz.distances();
   mz.draw({
     canvasId: 'canvas-aldous-broder',
