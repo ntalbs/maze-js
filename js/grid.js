@@ -160,7 +160,7 @@ Grid.prototype.draw = function (param) {
   g.font = (cellSize*0.5) + 'px "Arial"';
   g.textAlign = 'center';
 
-  if (colorize) {
+  if (colorize || labelDistance) {
     var distances = this.distances();
   }
 
@@ -172,11 +172,12 @@ Grid.prototype.draw = function (param) {
 
     if (colorize) {
       var distance = distances.get(cell);
-      g.fillStyle = "rgba(64,0,128," + (distance*0.001) + ")";
+      g.fillStyle = "rgba(128,0,255," + (distance*0.004) + ")";
       g.fillRect(x1, y1, cellSize, cellSize);
       g.fillStyle = 'black';
     }
     if (labelDistance) {
+      distance = distances.get(cell);
       g.fillText(distance, (x1+x2)/2, (y1+y2)/2 + (y2-y1)/6);
     }
     if (!self.northOf(cell)) drawLine(x1, y1, x2, y1);
