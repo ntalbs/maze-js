@@ -67,6 +67,36 @@ function pick(arr) {
   return arr[r];
 }
 
+function wilsons (rows, cols) {
+  var grid = new Grid(rows, cols),
+      unvisited = grid.eachCell(),
+      first = pick(unvisited);
+  unvisited = unvisited.filter(function (c) {
+    return c !== first;
+  });
+
+  while (unvisited.length !== 0) {
+    var cell = pick(unvisited),
+        path = [cell];
+    while (unvisited.includes(cell)) {
+      cell = pick(grid.neighborsOf(cell));
+      var position = path.indexOf(cell);
+      if (position >= 0) {
+        path = path.filter(function (c, i) { return i <= position; });
+      } else {
+        path.push(cell);
+      }
+    }
+    for (var i=0; i<path.length-1; i++) {
+      path[i].link(path[i+1]);
+      unvisited = unvisited.filter(function (c) {
+        return path[i] !== c;
+      });
+    }
+  }
+  return grid;
+}
+
 function recursiveBacktracker (rows, cols) {
   var grid = new Grid(rows, cols),
       stack = [],
@@ -91,7 +121,7 @@ function recursiveBacktracker (rows, cols) {
 window.onload = function (e) {
   var mz,
       rows = 20, cols = 20,
-      algorithms = [binaryTree, sidewinder, aldousBroder, recursiveBacktracker];
+      algorithms = [binaryTree, sidewinder, aldousBroder, wilsons, recursiveBacktracker];
 
   algorithms.forEach(function (algorithm) {
     var name = algorithm.name,
