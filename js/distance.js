@@ -12,12 +12,4 @@ Distance.prototype.set = function (cell, distance) {
   this.cells[cell] = distance;
 };
 
-Distance.prototype.cells = function () {
-  var cells = [];
-  for (var c in this.cells) {
-    cells.push(c);
-  }
-  return cells;
-};
-
 module.exports = Distance;
