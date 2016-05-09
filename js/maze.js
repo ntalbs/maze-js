@@ -118,10 +118,40 @@ function recursiveBacktracker (rows, cols) {
   return grid;
 }
 
+function huntAndKill (rows, cols) {
+  var grid = new Grid(rows, cols),
+      current = grid.randomCell();
+  while (current) {
+    var unvisitedNeighbors = grid.neighborsOf(current).filter(function (c) {
+      return c.links.length===0;
+    });
+    if (unvisitedNeighbors.length !== 0) {
+      var neighbor = pick(unvisitedNeighbors);
+      current.link(neighbor);
+      current = neighbor;
+    } else {
+      current = null;
+      var cells = grid.eachCell();
+      for (var i=0; i<cells.length; i++) {
+        var visitedNeighbors = grid.neighborsOf(cells[i]).filter(function (c) {
+          return c.links.length !== 0;
+        });
+        if (cells[i].links.length === 0 && visitedNeighbors.length !== 0) {
+          current = cells[i];
+          neighbor = pick(visitedNeighbors);
+          current.link(neighbor);
+          break;
+        }
+      };
+    }
+  }
+  return grid;
+}
+
 window.onload = function (e) {
   var mz,
       rows = 20, cols = 20,
-      algorithms = [binaryTree, sidewinder, aldousBroder, wilsons, recursiveBacktracker];
+      algorithms = [binaryTree, sidewinder, aldousBroder, wilsons, recursiveBacktracker, huntAndKill];
 
   algorithms.forEach(function (algorithm) {
     var name = algorithm.name,
