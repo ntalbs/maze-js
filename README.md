@@ -19,3 +19,9 @@ Run `gulp`:
     $ gulp
 
 This will build the project and show the result in your default browser.
+
+
+## Sample Image
+Generated maze with hunt-and-kill algorithm.
+
+![Maze](https://cloud.githubusercontent.com/assets/1460425/17001060/44bb0e8a-4ebd-11e6-8c58-0dcd2f7080ea.png)
