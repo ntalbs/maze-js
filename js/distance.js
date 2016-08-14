@@ -1,15 +1,17 @@
-function Distance(root) {
-  this.root = root;
-  this.cells = {};
-  this.cells[root] = 0;
+class Distance {
+  constructor (root) {
+    this.root = root
+    this.cells = {}
+    this.cells[root] = 0
+  }
+
+  get (cell) {
+    return this.cells[cell]
+  }
+
+  set (cell, distance) {
+    this.cells[cell] = distance
+  }
 }
 
-Distance.prototype.get = function (cell) {
-  return this.cells[cell];
-};
-
-Distance.prototype.set = function (cell, distance) {
-  this.cells[cell] = distance;
-};
-
-module.exports = Distance;
+module.exports = Distance
