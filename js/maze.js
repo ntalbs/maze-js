@@ -30,9 +30,9 @@ function sidewinder (rows, cols) {
     var run = []
     row.forEach(function (cell) {
       run.push(cell)
-      var isAtEasternBoundary = !grid.eastOf(cell),
-          isAtNorthernBoundary = !grid.northOf(cell),
-          shouldCloseOut = isAtEasternBoundary || (!isAtNorthernBoundary && rand(2) == 0)
+      var isAtEasternBoundary = !grid.eastOf(cell)
+      var isAtNorthernBoundary = !grid.northOf(cell)
+      var shouldCloseOut = isAtEasternBoundary || (!isAtNorthernBoundary && rand(2) === 0)
       if (shouldCloseOut) {
         var member = run[rand(run.length)]
         if (grid.northOf(member)) member.link(grid.northOf(member))
@@ -46,9 +46,9 @@ function sidewinder (rows, cols) {
 }
 
 function aldousBroder (rows, cols) {
-  var grid = new Grid(rows, cols),
-      unvisited = rows * cols - 1,
-      current = grid.randomCell()
+  var grid = new Grid(rows, cols)
+  var unvisited = rows * cols - 1
+  var current = grid.randomCell()
 
   while (unvisited > 0) {
     var neighbor = sample(grid.neighborsOf(current))
@@ -61,15 +61,15 @@ function aldousBroder (rows, cols) {
   return grid
 }
 
-function pick(arr) {
+function pick (arr) {
   var r = rand(arr.length)
   return arr[r]
 }
 
 function wilsons (rows, cols) {
-  var grid = new Grid(rows, cols),
-      unvisited = grid.eachCell(),
-      first = pick(unvisited)
+  var grid = new Grid(rows, cols)
+  var unvisited = grid.eachCell()
+  var first = pick(unvisited)
   unvisited = unvisited.filter(function (c) {
     return c !== first
   })
