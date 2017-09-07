@@ -1,4 +1,4 @@
-var rand = require('./rand')
+const rand = require('./rand')
 
 class Mask {
   constructor (r, c) {

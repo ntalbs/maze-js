@@ -1,6 +1,6 @@
-var Cell = require('./cell')
-var Distance = require('./distance')
-var rand = require('./rand')
+const Cell = require('./cell')
+const Distance = require('./distance')
+const rand = require('./rand')
 
 class Grid {
   constructor (rows, cols) {

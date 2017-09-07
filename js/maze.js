@@ -1,5 +1,5 @@
-var Grid = require('./grid')
-var rand = require('./rand')
+const Grid = require('./grid')
+const rand = require('./rand')
 
 function sample (arr) {
   return arr[rand(arr.length)]
