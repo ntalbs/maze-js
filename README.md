@@ -2,24 +2,24 @@
 Maze Generators in JavaScript. The code comes from [Mazes for Programmers](https://pragprog.com/book/jbmaze/mazes-for-programmers), originally written in Ruby, ported to JavaScript and slightly modified to reflect my own idea. But the core logic is the same.
 
 ## Prerequisites
-You will need [gulp](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md) installed. If it's not installed in your system, install it first.
+You will need [parcel](https://parceljs.org/getting_started.html) installed. If it's not installed in your system, install it first.
 
-    $ npm install gulp -g
+    $ npm install -g parcel-bundler
 
 ## Setup
-Clone the project and install the dependencies.
+Clone the project.
 
     $ git clone https://github.com/ntalbs/maze-js.git
     $ cd maze-js
-    $ npm install
 
 ## Running the maze
-Run `gulp`:
+Run `parcel`:
 
-    $ gulp
+    $ parcel
 
-This will build the project and show the result in your default browser.
+This will run server on port `1234`. You can override the default port with the `-p <port_number>` option.
 
+    $ parcel -p 4000
 
 ## Sample Image
 Generated maze with **hunt-and-kill** algorithm.
