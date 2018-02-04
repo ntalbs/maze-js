@@ -1,8 +1,8 @@
-const Cell = require('./cell')
-const Distance = require('./distance')
-const rand = require('./rand')
+import Cell from './cell'
+import Distance from './distance'
+import rand from './rand'
 
-class Grid {
+export default class Grid {
   constructor (rows, cols) {
     this.grid = []
     for (var r = 0; r < rows; r++) {
@@ -191,5 +191,3 @@ class Grid {
     })
   }
 }
-
-module.exports = Grid

@@ -1,4 +1,4 @@
-class Cell {
+export default class Cell {
   constructor (r, c) {
     this.row = r
     this.col = c
@@ -34,5 +34,3 @@ class Cell {
     return 'c(' + this.row + ',' + this.col + ')'
   }
 }
-
-module.exports = Cell

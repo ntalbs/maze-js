@@ -1,5 +1,5 @@
-const Grid = require('./grid')
-const rand = require('./rand')
+import Grid from './grid'
+import rand from './rand'
 
 function sample (arr) {
   return arr[rand(arr.length)]

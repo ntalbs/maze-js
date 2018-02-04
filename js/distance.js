@@ -1,4 +1,4 @@
-class Distance {
+export default class Distance {
   constructor (root) {
     this.root = root
     this.cells = {}
@@ -13,5 +13,3 @@ class Distance {
     this.cells[cell] = distance
   }
 }
-
-module.exports = Distance
