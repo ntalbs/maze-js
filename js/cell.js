@@ -19,7 +19,7 @@ export default class Cell {
   }
 
   unlink (cell, bidi) {
-    var i = this.links.indexOf(cell)
+    let i = this.links.indexOf(cell)
     if (i >= 0) {
       this.links.splice(i, 1)
     }

@@ -6,9 +6,9 @@ class Mask {
     this.col = c
 
     this.bits = new Array(r)
-    for (var i = 0; i < this.row; i++) {
+    for (let i = 0; i < this.row; i++) {
       this.bits[i] = new Array(c)
-      for (var j = 0; j < this.col; j++) {
+      for (let j = 0; j < this.col; j++) {
         this.bits[i][j] = true
       }
     }
@@ -27,9 +27,9 @@ class Mask {
   }
 
   count () {
-    var cnt = 0
-    for (var i = 0; i < this.row; i++) {
-      for (var j = 0; j < this.col; j++) {
+    let cnt = 0
+    for (let i = 0; i < this.row; i++) {
+      for (let j = 0; j < this.col; j++) {
         if (this.bits[i][j]) cnt++
       }
     }
@@ -38,8 +38,8 @@ class Mask {
 
   randomLocation () {
     while (true) {
-      var r = rand(this.row)
-      var c = rand(this.col)
+      let r = rand(this.row)
+      let c = rand(this.col)
       if (this.bits[r][c]) return {row: r, col: c}
     }
   }

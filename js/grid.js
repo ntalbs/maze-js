@@ -5,26 +5,26 @@ import rand from './rand'
 export default class Grid {
   constructor (rows, cols) {
     this.grid = []
-    for (var r = 0; r < rows; r++) {
+    for (let r = 0; r < rows; r++) {
       this.grid.push([])
-      for (var c = 0; c < cols; c++) {
+      for (let c = 0; c < cols; c++) {
         this.grid[r].push(new Cell(r, c))
       }
     }
   }
 
   eachRow () {
-    var rows = []
-    for (var r = 0, rlen = this.grid.length; r < rlen; r++) {
+    let rows = []
+    for (let r = 0, rlen = this.grid.length; r < rlen; r++) {
       rows.push(this.grid[r])
     }
     return rows
   }
 
   eachCell () {
-    var cells = []
-    for (var r = 0, rlen = this.grid.length; r < rlen; r++) {
-      for (var c = 0, clen = this.grid[r].length; c < clen; c++) {
+    let cells = []
+    for (let r = 0, rlen = this.grid.length; r < rlen; r++) {
+      for (let c = 0, clen = this.grid[r].length; c < clen; c++) {
         cells.push(this.grid[r][c])
       }
     }
@@ -32,7 +32,7 @@ export default class Grid {
   }
 
   northOf (cell) {
-    var r = cell.getRow() - 1
+    let r = cell.getRow() - 1
     if (r < 0) {
       return null
     }
@@ -40,8 +40,8 @@ export default class Grid {
   }
 
   eastOf (cell) {
-    var r = cell.getRow()
-    var c = cell.getCol() + 1
+    let r = cell.getRow()
+    let c = cell.getCol() + 1
     if (c >= this.grid[r].length) {
       return null
     }
@@ -49,7 +49,7 @@ export default class Grid {
   }
 
   southOf (cell) {
-    var r = cell.getRow() + 1
+    let r = cell.getRow() + 1
     if (r >= this.grid.length) {
       return null
     }
@@ -57,7 +57,7 @@ export default class Grid {
   }
 
   westOf (cell) {
-    var c = cell.getCol() - 1
+    let c = cell.getCol() - 1
     if (c < 0) {
       return null
     }
@@ -65,11 +65,11 @@ export default class Grid {
   }
 
   neighborsOf (cell) {
-    var neighbors = []
-    var north = this.northOf(cell)
-    var east = this.eastOf(cell)
-    var south = this.southOf(cell)
-    var west = this.westOf(cell)
+    let neighbors = []
+    let north = this.northOf(cell)
+    let east = this.eastOf(cell)
+    let south = this.southOf(cell)
+    let west = this.westOf(cell)
 
     if (north) neighbors.push(north)
     if (east) neighbors.push(east)
@@ -79,17 +79,17 @@ export default class Grid {
   }
 
   randomCell () {
-    var r = rand(this.grid.length)
-    var c = rand(this.grid[0].length)
+    let r = rand(this.grid.length)
+    let c = rand(this.grid[0].length)
     return this.grid[r][c]
   }
 
   distances (r, c) {
-    var root = this.grid[r || 0][c || 0]
-    var distances = new Distance(root)
-    var frontier = [root]
+    let root = this.grid[r || 0][c || 0]
+    let distances = new Distance(root)
+    let frontier = [root]
     while (frontier.length !== 0) {
-      var newFrontier = []
+      let newFrontier = []
       frontier.forEach(function (cell) {
         cell.links.forEach(function (linked) {
           if (typeof distances.get(linked) === 'number') return
@@ -105,30 +105,30 @@ export default class Grid {
   toString (contentOf) {
     function body (cell) {
       if (!contentOf) return '   '
-      var content = contentOf(cell)
+      let content = contentOf(cell)
       if (typeof content !== 'number') return '   '
       else if (content < 10) return '  ' + content
       else if (content < 100) return ' ' + content
       return content
     }
-    var output = ''
-    var cols = this.grid[0].length
+    let output = ''
+    let cols = this.grid[0].length
 
     output += '+'
-    for (var i = 0; i < cols; i++) {
+    for (let i = 0; i < cols; i++) {
       output += '---+'
     }
     output += '\n'
 
-    for (var r = 0, rlen = this.grid.length; r < rlen; r++) {
-      var row = this.grid[r]
-      var top = '|'
-      var bottom = '+'
-      for (var c = 0, clen = row.length; c < clen; c++) {
-        var cell = row[c]
-        var eastBoundary = cell.isLinked(this.eastOf(cell)) ? ' ' : '|'
-        var southBoundary = cell.isLinked(this.southOf(cell)) ? '   ' : '---'
-        var corner = '+'
+    for (let r = 0, rlen = this.grid.length; r < rlen; r++) {
+      let row = this.grid[r]
+      let top = '|'
+      let bottom = '+'
+      for (let c = 0, clen = row.length; c < clen; c++) {
+        let cell = row[c]
+        let eastBoundary = cell.isLinked(this.eastOf(cell)) ? ' ' : '|'
+        let southBoundary = cell.isLinked(this.southOf(cell)) ? '   ' : '---'
+        let corner = '+'
         top += body(cell) + eastBoundary
         bottom += southBoundary + corner
       }
@@ -142,13 +142,13 @@ export default class Grid {
     if (!param.canvas || param.canvas.tagName !== 'CANVAS') {
       throw 'requires canvas'
     }
-    var self = this
-    var canvas = param.canvas
-    var colorize = param.colorize
-    var labelDistance = param.labelDistance
-    var cellSize = param.cellSize || 25
-    var g = canvas.getContext('2d')
-    var drawLine = (x1, y1, x2, y2, color) => {
+    let self = this
+    let canvas = param.canvas
+    let colorize = param.colorize
+    let labelDistance = param.labelDistance
+    let cellSize = param.cellSize || 25
+    let g = canvas.getContext('2d')
+    let drawLine = (x1, y1, x2, y2, color) => {
       g.strokeStyle = color || 'black'
       g.beginPath()
       g.moveTo(x1, y1)
@@ -164,18 +164,20 @@ export default class Grid {
     g.font = (cellSize * 0.5) + 'px "Arial"'
     g.textAlign = 'center'
 
+    let distances
     if (colorize || labelDistance) {
-      var distances = this.distances()
+      distances = this.distances()
     }
 
     this.eachCell().forEach(function (cell) {
-      var x1 = cell.col * cellSize
-      var y1 = cell.row * cellSize
-      var x2 = (cell.col + 1) * cellSize
-      var y2 = (cell.row + 1) * cellSize
+      let x1 = cell.col * cellSize
+      let y1 = cell.row * cellSize
+      let x2 = (cell.col + 1) * cellSize
+      let y2 = (cell.row + 1) * cellSize
+      let distance
 
       if (colorize) {
-        var distance = distances.get(cell)
+        distance = distances.get(cell)
         g.fillStyle = 'rgba(128,0,255,' + (distance * 0.004) + ')'
         g.fillRect(x1, y1, cellSize, cellSize)
         g.fillStyle = 'black'
