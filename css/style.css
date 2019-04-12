@@ -12,7 +12,7 @@ h1 {
   border-bottom: 1px solid gray;
 }
 
-.maze-tile {
+.maze-box {
   float: left;
   padding: 5px 15px;
 }
