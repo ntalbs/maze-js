@@ -152,12 +152,12 @@ window.onload = function (e) {
   var cols = 20
   var algorithms = [binaryTree, sidewinder, aldousBroder, wilsons, recursiveBacktracker, huntAndKill]
 
-  algorithms.forEach(function (algorithm) {
+  algorithms.forEach(algorithm => {
     var name = algorithm.name
     var mz = algorithm(rows, cols)
     mz.draw({
       colorize: true,
-      // labelDistance: true,
+      labelDistance: false,
       cellSize: 15,
       canvas: document.getElementById(name)
     })
