@@ -15,11 +15,11 @@ Clone the project.
 ## Running the maze
 Run `parcel`:
 
-    $ parcel
+    $ parcel index.html
 
 This will run server on port `1234`. You can override the default port with the `-p <port_number>` option.
 
-    $ parcel -p 4000
+    $ parcel -p 4000 index.html
 
 ## Sample Image
 Generated maze with **hunt-and-kill** algorithm.
