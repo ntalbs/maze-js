@@ -140,7 +140,7 @@ export default class Grid {
 
   draw (param) {
     if (!param.canvas || param.canvas.tagName !== 'CANVAS') {
-      throw 'requires canvas'
+      throw new Error('requires canvas')
     }
     let self = this
     let canvas = param.canvas
