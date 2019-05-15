@@ -148,19 +148,44 @@ function huntAndKill (rows, cols) {
   return grid
 }
 
+function createMazeTile (title, id) {
+  let tile = document.createElement('div')
+  tile.className = 'maze-box'
+
+  let markup = [
+    `<h2>${title}</h2>`,
+    `<canvas id="${id}"></canvas>`
+  ].join('')
+
+  tile.innerHTML = markup
+  return tile
+}
+
 window.onload = function (e) {
   let rows = 20
   let cols = 20
-  let algorithms = [binaryTree, sidewinder, aldousBroder, wilsons, recursiveBacktracker, huntAndKill]
+  let container = document.getElementsByClassName('container')[0]
+  let algorithms = [
+    {h: 'Binary Tree', f: binaryTree},
+    {h: 'Sidewinder', f: sidewinder},
+    {h: 'Aldous-Broder', f: aldousBroder},
+    {h: 'Wilsons', f: wilsons},
+    {h: 'Recursive Backtracker', f: recursiveBacktracker},
+    {h: 'Hunt and Kill', f: huntAndKill}
+  ]
 
   algorithms.forEach(algorithm => {
-    let name = algorithm.name
-    let mz = algorithm(rows, cols)
+    let h = algorithm.h
+    let id = algorithm.f.name
+    let tile = createMazeTile(h, id)
+    container.append(tile)
+
+    let mz = algorithm.f(rows, cols)
     mz.draw({
       colorize: true,
       labelDistance: false,
       cellSize: 15,
-      canvas: document.getElementById(name)
+      canvas: document.getElementById(id)
     })
   })
 }
