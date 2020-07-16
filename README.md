@@ -24,4 +24,4 @@ This will run server on port `1234`. You can override the default port with the 
 ## Sample Image
 Generated maze with **hunt-and-kill** algorithm.
 
-![Maze](https://cloud.githubusercontent.com/assets/1460425/17001060/44bb0e8a-4ebd-11e6-8c58-0dcd2f7080ea.png)
+![](images/hunt-and-kill.png)
