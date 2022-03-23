@@ -2,3 +2,4 @@ node_modules
 dist
 .tern-port
 .cache
+.parcel-cache
