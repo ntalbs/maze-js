@@ -178,7 +178,7 @@ export default class Grid {
 
       if (colorize) {
         distance = distances.get(cell)
-        g.fillStyle = 'rgba(128,0,255,' + (distance * 0.004) + ')'
+        g.fillStyle = 'rgba(128,0,255,' + (distance * 0.0015) + ')'
         g.fillRect(x1, y1, cellSize, cellSize)
         g.fillStyle = 'black'
       }
