@@ -2,7 +2,7 @@
 Maze Generators in JavaScript. The code comes from [Mazes for Programmers](https://pragprog.com/book/jbmaze/mazes-for-programmers), originally written in Ruby, ported to JavaScript and slightly modified to reflect my own idea. But the core logic is the same.
 
 ## Prerequisites
-You will need [parcel](https://parceljs.org/getting_started.html) installed. If it's not installed in your system, install it first.
+You will need [parcel](https://parceljs.org/docs/) installed. If it's not installed in your system, install it first.
 
     $ npm install -g parcel-bundler
 
